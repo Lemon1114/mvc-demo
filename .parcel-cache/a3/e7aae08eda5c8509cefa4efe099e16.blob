@@ -1,9 +1,0 @@
-require('./app2.css');
-var _jquery = require('jquery');
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-var _jqueryDefault = _parcelHelpers.interopDefault(_jquery);
-const $tab = _jqueryDefault.default('.tab-bar');
-const $tabContent = _jqueryDefault.default('.TAB-content');
-$tab.on('click', 'li', e => {
-  var $index = _jqueryDefault.default(e.currentTarget).index();
-});

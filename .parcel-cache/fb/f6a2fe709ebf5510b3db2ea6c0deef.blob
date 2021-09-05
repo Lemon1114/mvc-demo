@@ -1,7 +1,0 @@
-.app1 {
-  width: 50vw;
-  height: 50vh;
-}
-.app1 button {
-  padding: 5px 10px;
-}

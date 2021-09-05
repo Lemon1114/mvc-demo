@@ -1,2 +1,0 @@
-require('./app3.css');
-require('jquery');
