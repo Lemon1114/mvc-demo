@@ -1,0 +1,19 @@
+.app4 .gradient {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.app4 .gradient.active {
+  animation: changeBgColor 1s linear 0s infinite forwards normal;
+}
+@keyframes changeBgColor {
+  0% {
+    background-color: coral;
+  }
+  100% {
+    background-color: crimson;
+  }
+}

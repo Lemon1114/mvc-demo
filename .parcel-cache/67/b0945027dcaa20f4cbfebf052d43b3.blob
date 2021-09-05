@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+ul,
+ol {
+  list-style: none;
+}
+section {
+  border: 1px solid #000;
+}
+
+.app1 {
+  width: 50vw;
+  height: 50vh;
+}
+.app1 button {
+  padding: 5px 10px;
+}
+.app1 button:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=index.HASH_REF_4473ed2135739810cdf2cdfac07ddac1.css.map */

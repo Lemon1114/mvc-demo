@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><link rel="stylesheet" href="/index.HASH_REF_4473ed2135739810cdf2cdfac07ddac1.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>MVC-Demo</title>
+  </head>
+  <body>
+    <div>
+      <section class="app1">
+        <span class="num"></span>
+        <div>
+          <button class="add">+1</button>
+          <button class="minus">-1</button>
+          <button class="multi">*2</button>
+          <button class="division">/2</button>
+          <button class="reset">归零</button>
+        </div>
+      </section>
+      <section class="app2">
+        <div>
+          <ol class="tab-bar">
+            <li class="active">Tab1</li>
+            <li>Tab2</li>
+          </ol>
+          <ol class="tab-content">
+            <li>内容111111</li>
+            <li>内容222222</li>
+          </ol>
+        </div>
+      </section>
+      <section class="app3">
+        <div class="slide"></div>
+      </section>
+      <section class="app4">
+        <div class="gradient"></div>
+      </section>
+    </div>
+    <script src="/index.HASH_REF_e9312995559a911a6f9b63a6bd78eeec.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+.app2 {
+}
+.app2 div {
+  width: 100%;
+}
+.app2 .tab-bar {
+  width: 100%;
+  display: flex;
+}
+.app2 .tab-bar > li {
+  width: 50%;
+  border: 1px solid #000;
+}

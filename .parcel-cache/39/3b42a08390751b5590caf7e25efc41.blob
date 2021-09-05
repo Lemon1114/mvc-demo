@@ -1,0 +1,10 @@
+require('./app4.css');
+var _jquery = require('jquery');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _jqueryDefault = _parcelHelpers.interopDefault(_jquery);
+const $block = _jqueryDefault.default('.gradient');
+$block.on('mouseenter', e => {
+  $block.addClass('active');
+}).on('mouseenter', e => {
+  $block.removeClass('active');
+});

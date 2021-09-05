@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+ul,
+ol {
+  list-style: none;
+}
+section {
+  display: inline-block;
+  border: 1px solid #000;
+  width: 50vw;
+  height: 50vh;
+}
+body {
+  overflow: hidden;
+}
+body > div {
+  display: flex;
+  flex-wrap: wrap;
+}

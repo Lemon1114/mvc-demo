@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+ul,
+ol {
+  list-style: none;
+}
+section {
+  display: inline-block;
+  border: 1px solid #000;
+  width: 50vw;
+  height: 50vh;
+}
+body section {
+  display: flex;
+}
+
+.app1 {
+  text-align: center;
+}
+.app1 button {
+  padding: 5px 10px;
+}
+.app1 button:hover {
+  cursor: pointer;
+}
+
+.app3 {
+}
+.app3 .slide {
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+}
+
+.app4 {
+  /* text-align: center; */
+}
+.app4 .gradient {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=index.HASH_REF_4473ed2135739810cdf2cdfac07ddac1.css.map */
