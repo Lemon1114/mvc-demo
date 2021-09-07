@@ -1,8 +1,9 @@
-.app3 .slide {
+#app3 .slide {
   border: 1px solid #000;
   width: 100px;
   height: 100px;
+  transition: transform 3s;
 }
-.app3 .slide.active {
+#app3 .slide.active {
   transform: translateX(40vw);
 }

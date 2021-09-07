@@ -25,51 +25,50 @@ body > div {
   flex-wrap: wrap;
 }
 
-.app1 {
+#app1 {
   text-align: center;
 }
-.app1 button {
+#app1 button {
   padding: 5px 10px;
 }
-.app1 button:hover {
+#app1 button:hover {
   cursor: pointer;
 }
 
-.app2 {
-}
-.app2 div {
+#app2 div {
   width: 100%;
 }
-.app2 .tab-bar {
+#app2 .tab-bar {
   width: 100%;
   display: flex;
 }
-.app2 .tab-bar > li {
+#app2 .tab-bar > li {
   width: 50%;
   border: 1px solid #000;
 }
-.app2 .tab-bar > li.active {
+#app2 .tab-bar > li.active {
   border: none;
   background-color: rgb(247, 124, 9);
 }
-.app2 .tab-content > li {
+#app2 .tab-content > li {
   display: none;
 }
-.app2 .tab-content > li.active {
+#app2 .tab-content > li.active {
   display: block;
   background-color: rgb(247, 124, 9);
 }
 
-.app3 .slide {
+#app3 .slide {
   border: 1px solid #000;
   width: 100px;
   height: 100px;
+  transition: transform 3s;
 }
-.app3 .slide.active {
+#app3 .slide.active {
   transform: translateX(40vw);
 }
 
-.app4 .gradient {
+#app4 #gradient {
   display: inline-block;
   width: 200px;
   height: 200px;
@@ -77,7 +76,7 @@ body > div {
   border-radius: 50%;
 }
 
-.app4 .gradient.active {
+#app4 #gradient.active {
   animation: changeBgColor 1000ms linear 0ms infinite forwards normal;
 }
 @keyframes changeBgColor {

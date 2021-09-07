@@ -1,9 +1,9 @@
-.app1 {
+#app1 {
   text-align: center;
 }
-.app1 button {
+#app1 button {
   padding: 5px 10px;
 }
-.app1 button:hover {
+#app1 button:hover {
   cursor: pointer;
 }

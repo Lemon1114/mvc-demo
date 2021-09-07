@@ -429,50 +429,121 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"30Yv7":[function(require,module,exports) {
 require('./reset.css');
-require('./app1.js');
-require('./app2.js');
-require('./app3.js');
-require('./app4');
+var _app1Js = require('./app1.js');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _app1JsDefault = _parcelHelpers.interopDefault(_app1Js);
+var _app2Js = require('./app2.js');
+var _app2JsDefault = _parcelHelpers.interopDefault(_app2Js);
+var _app3Js = require('./app3.js');
+var _app3JsDefault = _parcelHelpers.interopDefault(_app3Js);
+var _app = require('./app4');
+var _appDefault = _parcelHelpers.interopDefault(_app);
+_app1JsDefault.default.init("#app1");
+_app2JsDefault.default.init("#app2");
+_app3JsDefault.default.init("#app3");
+_appDefault.default.init("#app4");
 
-},{"./reset.css":"5dMMQ","./app1.js":"6OJP0","./app2.js":"1bsR9","./app3.js":"4knbM","./app4":"3XxMI"}],"5dMMQ":[function() {},{}],"6OJP0":[function(require,module,exports) {
+},{"./reset.css":"5dMMQ","./app1.js":"6OJP0","./app2.js":"1bsR9","./app3.js":"4knbM","./app4":"3XxMI","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"5dMMQ":[function() {},{}],"6OJP0":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
 require('./reset.css');
 require('./app1.css');
 var _jquery = require('jquery');
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _jqueryDefault = _parcelHelpers.interopDefault(_jquery);
-const $num = _jqueryDefault.default('.num');
-const $addBtn = _jqueryDefault.default('.add');
-const $minusBtn = _jqueryDefault.default('.minus');
-const $multiBtn = _jqueryDefault.default('.multi');
-const $divisionBtn = _jqueryDefault.default('.division');
-const $resetBtn = _jqueryDefault.default('.reset');
-let n = Number(localStorage.getItem('n')) || 0;
-$num.text(n);
-$addBtn.on('click', () => {
-  n += 1;
-  $num.text(n);
-});
-$minusBtn.on('click', () => {
-  n -= 1;
-  $num.text(n);
-});
-$multiBtn.on('click', () => {
-  n *= 2;
-  $num.text(n);
-});
-$divisionBtn.on('click', () => {
-  n /= 2;
-  $num.text(n);
-});
-$resetBtn.on('click', () => {
-  n = 0;
-  $num.text(n);
-});
-window.onbeforeunload = () => {
-  localStorage.setItem('n', n);
+const eventBus = _jqueryDefault.default(window);
+/*
+M:所有数据相关
+V:所有视图相关
+C:其他
+*/
+const m = {
+  // 初始化数据
+  n: Number(localStorage.getItem('n')) || 0,
+  update() {
+    eventBus.trigger('m:update', m.n);
+    localStorage.setItem('n', m.n);
+  }
 };
+const v = {
+  el: null,
+  // 初始化html
+  html: `<span class="num">{{num}}</span>
+    <div>
+  <button class="add">+1</button>
+  <button class="minus">-1</button>
+  <button class="multi">*2</button>
+  <button class="division">/2</button>
+  <button class="reset">归零</button>
+</div>`,
+  init(container) {
+    v.el = _jqueryDefault.default(container);
+  },
+  render(n) {
+    if (v.el.children.length != 0) {
+      v.el.empty();
+    }
+    _jqueryDefault.default(v.html.replace('{{num}}', n)).appendTo(v.el);
+  }
+};
+const c = {
+  eventMap: {
+    "click .add": "add",
+    "click .minus": "minus",
+    "click .multi": "multi",
+    "click .division": "division",
+    "click .reset": "reset"
+  },
+  init(container) {
+    v.init(container);
+    v.render(m.n);
+    // 获取DOM元素
+    // c.btn = {
+    // $num: $('.num'),
+    // $addBtn: $('.add'),
+    // $minusBtn: $('.minus'),
+    // $multiBtn: $('.multi'),
+    // $divisionBtn: $('.division'),
+    // $resetBtn: $('.reset')
+    // }
+    // c.autobindEvents()
+    c.autobindEvents();
+    eventBus.on('m:update', () => {
+      v.render(m.n);
+    });
+  },
+  autobindEvents() {
+    // 利用hashmap结构绑定事件
+    for (let key in c.eventMap) {
+      // console.log(c[c.eventMap[key]])
+      v.el.on(key.substring(0, 5), key.substring(6), () => {
+        c[c.eventMap[key]]();
+      });
+    }
+  },
+  add() {
+    m.n += 1;
+    m.update(m.n);
+  },
+  minus() {
+    m.n -= 1;
+    m.update(m.n);
+  },
+  multi() {
+    m.n *= 2;
+    m.update(m.n);
+  },
+  division() {
+    m.n /= 2;
+    m.update(m.n);
+  },
+  reset() {
+    m.n = 0;
+    m.update(m.n);
+  }
+};
+exports.default = c;
 
-},{"jquery":"6Oaih","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N","./reset.css":"5dMMQ","./app1.css":"11cDO"}],"6Oaih":[function(require,module,exports) {
+},{"./reset.css":"5dMMQ","./app1.css":"11cDO","jquery":"6Oaih","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"5dMMQ":[function() {},{}],"11cDO":[function() {},{}],"6Oaih":[function(require,module,exports) {
 var define;
 /*!
 * jQuery JavaScript Library v3.6.0
@@ -8250,41 +8321,193 @@ exports.export = function (dest, destName, get) {
     get: get
   });
 };
-},{}],"5dMMQ":[function() {},{}],"11cDO":[function() {},{}],"1bsR9":[function(require,module,exports) {
+},{}],"1bsR9":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
 require('./app2.css');
 var _jquery = require('jquery');
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _jqueryDefault = _parcelHelpers.interopDefault(_jquery);
-const $tab = _jqueryDefault.default('.tab-bar');
-const $tabContent = _jqueryDefault.default('.tab-content');
-$tab.on('click', 'li', e => {
-  var $index = _jqueryDefault.default(e.currentTarget).index();
-  $tab.children().eq($index).addClass('active').siblings().removeClass('active');
-  $tabContent.children().eq($index).addClass('active').siblings().removeClass('active');
-});
+const eventBus = _jqueryDefault.default(window);
+const m = {
+  index: Number(localStorage.getItem('index')) || 0,
+  update(n) {
+    eventBus.trigger('m:update', n);
+    localStorage.setItem('index', n);
+  }
+};
+const v = {
+  el: null,
+  html(index) {
+    return `<div>
+    <ol class="tab-bar">
+     <li class="${index === 0 ? 'active' : ''}">Tab1</li>
+     <li class="${index === 1 ? 'active' : ''}">Tab2</li>
+    </ol>
+    <ol class="tab-content">
+     <li class="${index === 0 ? 'active' : ''}">内容111111</li>
+     <li class="${index === 1 ? 'active' : ''}">内容222222</li>
+    </ol>
+    </div>`;
+  },
+  init(container) {
+    v.el = _jqueryDefault.default(container);
+  },
+  render() {
+    if (v.el.children.length != 0) {
+      v.el.empty();
+    }
+    _jqueryDefault.default(v.html(m.index)).appendTo(v.el);
+  }
+};
+const c = {
+  eventMap: {
+    "click li": "toggleActive"
+  },
+  init(container) {
+    v.init(container);
+    v.render(m.index);
+    c.autobindEvents();
+    eventBus.on('m:update', () => {
+      v.render(m.index);
+    });
+  },
+  autobindEvents() {
+    // 利用hashmap结构绑定事件
+    for (let key in c.eventMap) {
+      // console.log(key.substring(0, 5))
+      // console.log(key.substring(6))
+      // console.log(c[c.eventMap[key]])
+      v.el.on(key.substring(0, 5), key.substring(6), e => {
+        c[c.eventMap[key]](e);
+      });
+    }
+  },
+  toggleActive(e) {
+    m.index = _jqueryDefault.default(e.currentTarget).index();
+    m.update(m.index);
+  }
+};
+exports.default = c;
 
-},{"jquery":"6Oaih","./app2.css":"4biXF","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"4biXF":[function() {},{}],"4knbM":[function(require,module,exports) {
+},{"./app2.css":"4biXF","jquery":"6Oaih","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"4biXF":[function() {},{}],"4knbM":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
 require('./app3.css');
 var _jquery = require('jquery');
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _jqueryDefault = _parcelHelpers.interopDefault(_jquery);
-const $slide = _jqueryDefault.default('.slide');
-$slide.on('click', e => {
-  _jqueryDefault.default(e.currentTarget).toggleClass('active');
-});
+const eventBus = _jqueryDefault.default(window);
+const m = {
+  active: localStorage.getItem('active') === 'yes' || false,
+  update(n) {
+    eventBus.trigger('m:update', n);
+    localStorage.setItem('active', n);
+  }
+};
+const v = {
+  el: null,
+  html(active) {
+    return `<div class="${active ? 'active' : ''} slide"></div>`;
+  },
+  init(container) {
+    v.el = _jqueryDefault.default(container);
+  },
+  render() {
+    if (v.el.children.length != 0) {
+      v.el.empty();
+    }
+    _jqueryDefault.default(v.html(m.active)).appendTo(v.el);
+  }
+};
+const c = {
+  eventMap: {
+    "click .slide": "toggleActive"
+  },
+  init(container) {
+    v.init(container);
+    v.render();
+    c.autobindEvents();
+    eventBus.on('m:update', () => {
+      v.render();
+    });
+  },
+  autobindEvents() {
+    // 利用hashmap结构绑定事件
+    for (let key in c.eventMap) {
+      v.el.on(key.substring(0, 5), key.substring(6), e => {
+        c[c.eventMap[key]](e);
+      });
+    }
+  },
+  toggleActive(e) {
+    m.active = !m.active;
+    m.update(m.active);
+  }
+};
+exports.default = c;
 
-},{"jquery":"6Oaih","./app3.css":"2MbNN","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"2MbNN":[function() {},{}],"3XxMI":[function(require,module,exports) {
+},{"./app3.css":"2MbNN","jquery":"6Oaih","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"2MbNN":[function() {},{}],"3XxMI":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
 require('./app4.css');
 var _jquery = require('jquery');
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _jqueryDefault = _parcelHelpers.interopDefault(_jquery);
-const $block = _jqueryDefault.default('.gradient');
-$block.on('mouseover', e => {
-  $block.addClass('active');
-}).on('mouseout', e => {
-  $block.removeClass('active');
-});
+const eventBus = _jqueryDefault.default(window);
+const m = {
+  active: localStorage.getItem('active') === 'yes' || false,
+  update(n) {
+    console.log(m.active);
+    eventBus.trigger('m:update', n);
+    localStorage.setItem('active', n ? 'yes' : 'no');
+  }
+};
+const v = {
+  el: null,
+  html(active) {
+    return `<div class="${active ? 'active' : ' '}" id="gradient"></div>`;
+  },
+  init(container) {
+    v.el = _jqueryDefault.default(container);
+  },
+  render() {
+    if (v.el.children.length != 0) {
+      v.el.empty();
+    }
+    _jqueryDefault.default(v.html(m.active)).appendTo(v.el);
+  }
+};
+const c = {
+  eventMap: {
+    "mouseenter #gradient": "addActive",
+    "mouseout #gradient": "removeActive"
+  },
+  init(container) {
+    v.init(container);
+    v.render();
+    c.autobindEvents();
+    eventBus.on('m:update', () => {
+      v.render();
+    });
+  },
+  autobindEvents() {
+    // 利用hashmap结构绑定事件
+    for (let key in c.eventMap) {
+      v.el.on(key.split(' ')[0], key.split(' ')[1], c[c.eventMap[key]]);
+    }
+    _jqueryDefault.default('#gradient').on('mouseout', c.removeActive());
+  },
+  addActive() {
+    m.active = true;
+    console.log('进来了');
+    m.update(m.active);
+  },
+  removeActive() {
+    console.log('出去了');
+    m.active = false;
+    m.update(m.active);
+  }
+};
+exports.default = c;
 
-},{"jquery":"6Oaih","./app4.css":"6SFnb","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"6SFnb":[function() {},{}]},["1Ypau","30Yv7"], "30Yv7", "parcelRequire1cc7")
+},{"./app4.css":"6SFnb","jquery":"6Oaih","@parcel/transformer-js/lib/esmodule-helpers.js":"5oa3N"}],"6SFnb":[function() {},{}]},["1Ypau","30Yv7"], "30Yv7", "parcelRequire1cc7")
 
 //# sourceMappingURL=index.bd78eeec.js.map

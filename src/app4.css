@@ -1,4 +1,4 @@
-.app4 .gradient {
+#app4 #gradient {
   display: inline-block;
   width: 200px;
   height: 200px;
@@ -6,7 +6,7 @@
   border-radius: 50%;
 }
 
-.app4 .gradient.active {
+#app4 #gradient.active {
   animation: changeBgColor 1000ms linear 0ms infinite forwards normal;
 }
 @keyframes changeBgColor {
